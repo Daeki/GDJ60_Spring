@@ -27,11 +27,33 @@
 		<beans:property name="order" value="0"></beans:property>
 	</beans:bean>
 	
+	<beans:bean class="com.iu.s1.interceptors.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
+	
 	<interceptors>
 		<interceptor>
 			<mapping path="/qna/*"/>
+			<mapping path="/member/*"/>
 			<exclude-mapping path="/qna/list"/>
+			<exclude-mapping path="/member/memberLogin"/>
+			<exclude-mapping path="/member/memberJoin"/>
+			<exclude-mapping path="/member/memberAgree"/>
 			<beans:ref bean="memberCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<beans:ref bean="adminCheckInterceptor"/>
+			<!-- <beans:bean class="com.iu.s1.interceptors.AdminCheckInterceptor" ></beans:bean> -->
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/update"/>
+			<mapping path="/qna/delete"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			<beans:ref bean="ownerCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
 	
