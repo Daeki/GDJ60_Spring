@@ -35,8 +35,9 @@
 			<mapping path="/member/*"/>
 			<exclude-mapping path="/qna/list"/>
 			<exclude-mapping path="/member/memberLogin"/>
-			<exclude-mapping path="/member/memberJoin"/>
+			<exclude-mapping path="/member/memberAdd"/>
 			<exclude-mapping path="/member/memberAgree"/>
+			<exclude-mapping path="/member/memberIdCheck"/>
 			<beans:ref bean="memberCheckInterceptor"/>
 		</interceptor>
 		

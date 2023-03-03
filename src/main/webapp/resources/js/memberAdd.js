@@ -21,18 +21,38 @@ let checks = [false, false, false, false]
 
 // ID 검증
 id.addEventListener("blur", function(){
-    if(id.value.length != 0){
-        idResult.innerHTML="정상적인 ID";
-        //idCheck=true;
-        checks[0]=true;
-        idResult.classList.add("blueResult");
-        idResult.classList.remove("redResult");
-    }else {
-        idResult.innerHTML='ID는 필수 사항 입니다';
-        checks[0]=false;
-        idResult.classList.add("redResult");
-        idResult.classList.remove("blueResult");
-    }
+    //중복검사
+    let xhttp = new XMLHttpRequest();
+
+    //url, method
+    xhttp.open("POST", "./memberIdCheck");
+
+    //header
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    //요청 발생 POST일 경우 parameter 전송
+    xhttp.send("id="+id.value);
+
+    //응답 처리
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4 && this.status==200){
+            if(this.responseText.trim()=='true'){
+                checks[0]=true;
+                idResult.innerHTML="사용가능한 ID";
+                idResult.classList.add("blueResult");
+                idResult.classList.remove("redResult");
+            }else {
+                checks[0]=false;
+                idResult.innerHTML="중복된 ID";
+                idResult.classList.add("redResult");
+                idResult.classList.remove("blueResult");
+            }
+        }
+        // if(this.readyState==4 && this.status !=200){
+
+        // }
+
+    });
 });
 
 //PW 검증
