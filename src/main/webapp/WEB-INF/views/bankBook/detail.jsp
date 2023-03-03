@@ -31,6 +31,26 @@
 	</c:if>
 	<a href="./update?bookNum=${dto.bookNum}">상품수정</a>
 	<a href="./list">목록으로</a>
-<c:import url="../template/common_js.jsp"></c:import>	
+
+	<div class="my-5" id="commentListResult">
+
+
+	</div>
+
+	<div class="my-5">
+		
+		<div class="mb-3">
+			<textarea class="form-control" rows="3" id="replyContents"></textarea>
+		</div>
+		<div class="mb-3">
+			<button type="button" class="btn btn-primary" id="replyAdd" data-book-bookNum="${dto.bookNum}">댓글작성</button>
+		</div>
+
+	</div>
+
+	
+
+<c:import url="../template/common_js.jsp"></c:import>
+<script src="/resources/js/bankBookReply.js"></script>	
 </body>
 </html>

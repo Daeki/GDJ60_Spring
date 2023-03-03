@@ -12,9 +12,6 @@
 <!-- 서버 내부 주소, 상대경로 -->
 <c:import url="./template/header.jsp"></c:import>
 
-<h1>학원에서 작성</h1>
-
-<h3>집에서 작성</h3>
 
 <div class="container-fluid my-5">
 	<div class="row col-md-6 offset-md-3">
@@ -42,14 +39,13 @@
 	</div>
 </div>
 
-<div>
-	<h1>${member.name}</h1>
-	<button id="btn">Ajax</button>
+<div class="container-fluid my-5" id="noticeList">
+
 </div>
 
 
 
 <c:import url="./template/common_js.jsp"></c:import>
-<script src="/resources/js/ajaxTest.js"></script>
+<script src="/resources/js/noticeTop5.js"></script>
 </body>
 </html>

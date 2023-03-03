@@ -29,6 +29,7 @@
 	
 	<beans:bean class="com.iu.s1.interceptors.AdminCheckInterceptor" id="adminCheckInterceptor"></beans:bean>
 	
+<!-- 	
 	<interceptors>
 		<interceptor>
 			<mapping path="/qna/*"/>
@@ -46,7 +47,7 @@
 			<exclude-mapping path="/notice/list"/>
 			<exclude-mapping path="/notice/detail"/>
 			<beans:ref bean="adminCheckInterceptor"/>
-			<!-- <beans:bean class="com.iu.s1.interceptors.AdminCheckInterceptor" ></beans:bean> -->
+			<beans:bean class="com.iu.s1.interceptors.AdminCheckInterceptor" ></beans:bean>
 		</interceptor>
 		
 		<interceptor>
@@ -57,6 +58,7 @@
 			<beans:ref bean="ownerCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
+-->
 	
 	<context:component-scan base-package="com.iu.s1" />
 	
