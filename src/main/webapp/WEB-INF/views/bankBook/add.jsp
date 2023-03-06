@@ -13,7 +13,6 @@
 <c:import url="../template/header.jsp"></c:import>
 
 <div class="container-fluid">
-
 	<div class="row justify-content-center my-4">
 		<h1 class="col-md-7 text-center">상품 등록 Page</h1>
 	</div>
