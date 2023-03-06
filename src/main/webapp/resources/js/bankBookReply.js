@@ -3,6 +3,9 @@ const replyContents = document.getElementById("replyContents");
 const commentListResult = document.getElementById("commentListResult");
 //const pageLink = document.querySelectorAll(".page-link");
 
+const contentsConfirm = document.getElementById('contentsConfirm');
+const closeModal = document.getElementById('closeModal');
+
 
 replyAdd.addEventListener("click", function(){
 
@@ -97,49 +100,47 @@ commentListResult.addEventListener("click", function(e){
 commentListResult.addEventListener("click", function(e){
     let updateButton = e.target;
     if(updateButton.classList.contains("update")){
-        //console.log(updateButton.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling);
+        
         let num = updateButton.getAttribute("data-comment-num");
-        let contents = document.getElementById("contents"+num);
-        // console.log(contents);
-        // contents.innerHTML='<textarea name="" id="" cols="30" rows="3">'+contents.innerHTML+'</textarea>';
-        contents.firstChild.removeAttribute("readonly");
-        let btn = document.createElement("button");
-        let attr = document.createAttribute("class");
-        attr.value="btn btn-primary";
-        btn.setAttributeNode(attr);
-        contents.appendChild(btn);
-        attr = document.createTextNode("확인");
-        btn.appendChild(attr);
-
-        btn.addEventListener("click", function(){
-            console.log(contents.firstChild.value);
-            console.log(num);
-
-            let xhttp = new XMLHttpRequest();
-            xhttp.open("POST", "../bankBookComment/update");
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-            xhttp.send("num="+num+"&contents="+contents.firstChild.value);
-            xhttp.addEventListener("readystatechange", function(){
-                if(this.readyState==4&&this.status==200){
-                    let result = this.responseText.trim();
-                    if(result>0){
-                        alert('수정 성공');
-                        getList(1);
-                    }else {
-                        alert('수정 실패');
-                    }
-                    
-                }        
-            })
-
-        })
-       
+        let contents = document.getElementById("contents"+num); //td
+        console.log(contents);
+        let contentsTextArea=document.getElementById("contents")//Modal textarea
+        console.log(contentsTextArea);
+        //value
+        contentsTextArea.value=contents.innerText;
+        contentsConfirm.setAttribute("data-comment-num", num);
     }
-
+    
     e.preventDefault();
     
 });
 
+
+//
+contentsConfirm.addEventListener("click", function(){
+    console.log("Update Post");
+    let updateContents = document.getElementById("contents").value;
+    let num = contentsConfirm.getAttribute("data-comment-num");
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "../bankBookComment/update");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("num="+num+"&contents="+updateContents);
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState==4&&this.status==200){
+            let result = this.responseText.trim();
+            if(result>0){
+                alert('수정 성공');
+                closeModal.click();
+                getList(1);
+            }else {
+                alert('삭제 실패');
+            }
+            
+        }        
+    });
+    
+})
 
 
 

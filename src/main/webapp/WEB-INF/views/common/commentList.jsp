@@ -6,13 +6,13 @@
 <c:forEach items="${list}" var="dto">
 	<tr>
 		<td id="contents${dto.num}">
-			<textarea rows="" cols="30" readonly>${dto.contents}</textarea>
+			${dto.contents}
 		</td>
 		<td>${dto.writer}</td>
 		<td>${dto.regDate}</td>
 				<td>
 		<c:if test="${member.id eq dto.writer}">
-			<button class="btn btn-info update" data-comment-num="${dto.num}">UPDATE</button>
+			<button class="btn btn-info update" data-bs-toggle="modal" data-bs-target="#contentsModal" data-comment-num="${dto.num}">UPDATE</button>
 		</c:if>
 		</td>
 		<td>
