@@ -12,11 +12,17 @@ const closeModal = document.getElementById('closeModal');
 replyAdd.addEventListener("click", function(){
     console.log("num : ", replyAdd.getAttribute('data-book-bookNum'));
 
+    //JS에서 사용할 가상의 Form 태그 생성
+    const form1 = new FormData(); // <form></form>
+    form1.append("contents", replyContents.value); //<form><input type="text" name="contents" value="dfds"></form>
+    form1.append("bookNum", replyAdd.getAttribute('data-book-bookNum'))//<form><input type="text" name="contents" value="dfds"><input type="text" name="bookNum" value="123"></form>
+
+
     fetch('../bankBookComment/add', {
         method:'POST',
-        headers:{'Content-type':"application/x-www-form-urlencoded"},
-        body:"contents="+replyContents.value+"&bookNum="+replyAdd.getAttribute('data-book-bookNum'),
-    }).then((response)=> response.st)
+        //headers:{},
+        body:form1,
+    }).then((response)=> response.text())
     .then((res)=>{
         if(res.trim()==1){
             alert('댓글이 등록 되었습니다')
@@ -25,9 +31,7 @@ replyAdd.addEventListener("click", function(){
         }else {
             alert('댓글 등록에 실패 했습니다')
         }
-    }).catch(()=>{
-
-    });
+    })
 
 
     // let xhttp = new XMLHttpRequest();
@@ -59,24 +63,33 @@ getList(1);
 
 function getList(page){
 
-    let count=0;
-
-    let xhttp = new XMLHttpRequest();
-
-    xhttp.open("GET", "/bankBookComment/list?bookNum="+replyAdd.getAttribute('data-book-bookNum')+"&page="+page);
-
-    
-    xhttp.addEventListener("readystatechange", function(){
-        if(this.readyState==4&&this.status==200){
-            commentListResult.innerHTML=this.responseText.trim();
-            count++;
-        }        
+    fetch("/bankBookComment/list?bookNum="+replyAdd.getAttribute('data-book-bookNum')+"&page="+page, {
+        method:'GET'
+        //GET 과 HEAD 메서드는 body속성을 가질 수 없음
     })
+    .then((response)=>response.text())
+    .then((res)=>{
+        commentListResult.innerHTML=res.trim();
+    })
+
+    //let count=0;
+
+    // let xhttp = new XMLHttpRequest();
+
+    // xhttp.open("GET", "/bankBookComment/list?bookNum="+replyAdd.getAttribute('data-book-bookNum')+"&page="+page);
+
     
-    xhttp.send();
+    // xhttp.addEventListener("readystatechange", function(){
+    //     if(this.readyState==4&&this.status==200){
+    //         commentListResult.innerHTML=this.responseText.trim();
+    //         count++;
+    //     }        
+    // })
+    
+    // xhttp.send();
 
     //0이 출력 : 비동기 방식이기 때문
-    console.log("count : ", count);
+    //console.log("count : ", count);
 
 }
 
