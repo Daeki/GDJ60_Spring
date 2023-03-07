@@ -7,7 +7,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_css.jsp"></c:import>
-
+<!-- include summernote css/js-->
+<link href="summernote-bs5.css" rel="stylesheet">
+<script src="summernote-bs5.js"></script>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -75,10 +77,11 @@
 </div>
 
 <script src="../resources/js/fileManger.js"></script>
+<c:import url="../template/common_js.jsp"></c:import>
 <script>
 	setMax(3);
+	$("#bookDetail").summernote();
 	// setParam('f');
 </script>
-<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

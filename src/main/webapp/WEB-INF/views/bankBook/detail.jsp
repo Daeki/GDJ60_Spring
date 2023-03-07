@@ -7,6 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_css.jsp"></c:import>
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -70,8 +71,6 @@
 		</div>
 		</div>
 	</div>
-
-	
 
 <c:import url="../template/common_js.jsp"></c:import>
 <script src="/resources/js/bankBookReply.js"></script>	
