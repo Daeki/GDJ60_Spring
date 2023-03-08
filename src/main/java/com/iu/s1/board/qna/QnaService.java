@@ -79,8 +79,11 @@ public class QnaService implements BoardService {
 		int result = qnaDAO.setBoardUpdate(bbsDTO);
 		
 		//qnaFiles Delete
-		for(Long fileNum : fileNums) {
-			qnaDAO.setBoardFileDelete(fileNum);
+		if(fileNums != null) {
+			for(Long fileNum : fileNums) {
+				qnaDAO.setBoardFileDelete(fileNum);
+				
+			}
 		}
 		
 		//qnaFiles Insert
