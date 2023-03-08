@@ -43,7 +43,7 @@
 				<c:forEach items="${dto.boardFileDTOs}" var="fileDTO">
 					<div class="input-group mb-3 my-3">
 						  <div class="input-group-text">
-						    <input class="form-check-input mt-0" type="checkbox" name="fileNum" value="${fileDTO.fileNum}" aria-label="Checkbox for following text input">
+						    <input class="form-check-input mt-0 deleteCheck" type="checkbox" name="fileNum" value="${fileDTO.fileNum}" aria-label="Checkbox for following text input">
 						  </div>
 						  <input type="text" disabled value="${fileDTO.oriName}" class="form-control" aria-label="Text input with checkbox">
 					</div>

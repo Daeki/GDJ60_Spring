@@ -21,6 +21,26 @@ function setMax(m){
     max=m;
 }
 
+$(".deleteCheck").click(function(){
+    if($(this).prop('checked')){
+        let result=confirm('파일이 영구 삭제 됩니다')
+
+        if(result){
+            count--;
+        }else {
+            $(this).prop("checked", false);
+        }
+
+    }else {
+        if(count==5){
+            console.log("idx : ", idx);
+            $("#f"+(idx-1)).remove();
+            return;
+        }
+        count++;
+    }
+})
+
 $("#fileList").on("click", ".dels", function(e){
     // let id = $(this).attr("data-dels-id");
     // $("#"+id).remove();
