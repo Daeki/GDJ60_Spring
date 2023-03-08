@@ -34,7 +34,8 @@ $(".deleteCheck").click(function(){
     }else {
         if(count==5){
             console.log("idx : ", idx);
-            $("#f"+(idx-1)).remove();
+            idx--
+            $("#f"+idx).remove();
             return;
         }
         count++;
