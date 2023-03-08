@@ -43,6 +43,7 @@
 					<button type="button" class="btn btn-outline-danger">X</button>
 				</div>  -->
 				<button type="button" class="btn btn-primary" id="fileAdd">ADD</button>
+
 			</div>
 						
 			<div class="mb-3">
@@ -56,8 +57,8 @@
 <c:import url="../template/common_js.jsp"></c:import>
 <script src="../resources/js/fileManger.js"></script>
 <script>
+	setParam('addFiles');
 	setMax(5);
-	setParam('files');
 	$("#contents").summernote();
 </script>
 </body>

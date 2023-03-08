@@ -96,6 +96,14 @@
   	<select id="getBoardFileDetail" parameterType="BoardFileDTO" resultType="BoardFileDTO">
   		SELECT * FROM QNAFILES WHERE FILENUM=#{fileNum}
   	</select>
+  	
+  	<delete id="setBoardFileDelete" parameterType="Long">
+  		DELETE QNAFILES WHERE FILENUM=#{fileNum}
+  	</delete>
+  	
+  	<update id="setBoardUpdate" parameterType="BbsDTO">
+  		UPDATE QNA SET TITLE=#{title}, CONTENTS=#{contents} WHERE NUM=#{num}
+  	</update>
   
   	
   </mapper>
