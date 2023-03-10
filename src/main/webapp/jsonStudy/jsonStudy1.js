@@ -9,6 +9,8 @@ $("#btn").click(()=>{
         success:function(response){
             console.log(response);
             console.log(typeof response);
+
+            response=JSON.parse(response);
         }
     });
 
